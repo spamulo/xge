@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "skipLibCheck": true,
+    "module": "ESNext",
+    /* 'Bundler' is the best choice for Vite projects */
+    "moduleResolution": "Bundler", 
+    "allowSyntheticDefaultImports": true,
+    /* Add this to ensure it understands Node.js globals like 'process' */
+    "types": ["node"]
+  },
+  "include": ["vite.config.ts", "scripts/*.ts"]
+}

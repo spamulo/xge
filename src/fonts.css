@@ -1,0 +1,94 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap&subset=cyrillic,cyrillic-ext,latin,latin-ext');
+
+@font-face {
+  font-family: 'Livvic-Black';
+  src: url('@/assets/fonts/Livvic-Black.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-score {
+  font-family: 'Livvic-Black';
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('@/assets/fonts/Montserrat-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('@/assets/fonts/Montserrat-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('@/assets/fonts/Montserrat-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('@/assets/fonts/Montserrat-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('@/assets/fonts/Montserrat-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+.font-body {
+  font-family: Montserrat, sans-serif;
+}
+
+@font-face {
+  font-family: 'The New Elegance';
+  src: url('@/assets/fonts/The New Elegance.otf') format('opentype'),
+    url('@/assets/fonts/The New Elegance.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'The New Elegance Condensed';
+  src: url('@/assets/fonts/The New Elegance Condensed.otf') format('opentype'),
+    url('@/assets/fonts/The New Elegance Condensed.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'The New Elegance Condensed';
+  src: url('@/assets/fonts/The New Elegance Condensed Italic.otf') format('opentype'),
+    url('@/assets/fonts/The New Elegance Condensed Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'The New Elegance';
+  src: url('@/assets/fonts/The New Elegance Italic.otf') format('opentype'),
+    url('@/assets/fonts/The New Elegance Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+.font-heading {
+  font-family: 'The New Elegance', sans-serif;
+  line-height: 130%;
+}
+
+.language-mk .font-heading {
+  font-family: 'Cormorant';
+  font-weight: 700;
+  line-height: 100%;
+} */
