@@ -64,7 +64,7 @@ if (isDev) {
 }
 
 const prodGame = computed(() => {
-  if (envGameName == gameName) {
+  if (envGameName == gameName.value) {
     return ProdGame
   }
   const gameIndex = envExtraGameNames.split(',').indexOf(gameName)
