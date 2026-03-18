@@ -17,11 +17,21 @@ const appTarget = process.env.VITE_APP_TARGET || ''; // 'editor' or ''
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
   const gameName = env.VITE_GAME_NAME || 'Game1'
+  const extraGames = (env.VITE_EXTRA_GAMES || '').split(',').map(x => x.trim())
+  const extraGamesAlias = {}
+  for (let i = 0; i < 32; i++) {
+    const eg = extraGames[i]
+    const s = `@game-${i}`
+    const d = eg ? path.resolve(__dirname, `./src/games/${gameName}/${gameName}.vue`) : './src/Dummy.vue'
+    extraGameAlias[s] = d
+  }
   return {
     resolve: {
       alias: {
         "@": fileURLToPath(new URL('./src', import.meta.url)),
-        '@active-game': path.resolve(__dirname, `./src/games/${gameName}/${gameName}.vue`)
+        '@active-game': path.resolve(__dirname, `./src/games/${gameName}/${gameName}.vue`),
+        ...extraGamesAlias
+        // '@game-0': path.resolve(__dirname, `./src/games/${gameName}/${gameName}.vue`)
       },
     },
     plugins: [

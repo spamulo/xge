@@ -9,8 +9,8 @@ page.setTeardownDelay(1000)
 </script>
 
 <template>
-	<div style="background: #663">
-		01-Landing - game 2
+	<div style="background: #636">
+		01-Landing - game 3
 		<PageStatusTest></PageStatusTest>
 		<Hero :bg="test"></Hero>
 	</div>

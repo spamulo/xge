@@ -5,10 +5,13 @@
 <script setup lang="ts">
 const isDev = import.meta.env.DEV
 const envGameName = import.meta.env.VITE_GAME_NAME
-const envExtraGameNames = import.meta.env.VITE_ALL_GAME_NAMES
+const envExtraGameNames = import.meta.env.VITE_EXTRA_GAMES
 
 // in production we statically import the game using an alias, see vite.config.js
 const ProdGame = defineAsyncComponent(() => import('@active-game'))
+
+const ExtraGame0 = defineAsyncComponent(() => import('@game-0'))
+const ExtraGame1 = defineAsyncComponent(() => import('@game-1'))
 
 // build tool sets the game name
 const gameName = ref(envGameName || 'Game1')
