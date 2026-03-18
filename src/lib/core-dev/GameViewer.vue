@@ -2,12 +2,10 @@
 	<GameDebugPanel></GameDebugPanel>
 	<div class="game-viewer">
 		<template v-for="({ path: name, page }, pageIndex) in gameState.pages">
-			<!-- {{ name }}<br /> -->
 			<PageViewer v-if="pageStates[pageIndex].vIf.value" :name="name" :pageIndex="pageIndex" :page="page"
 				:class="pageStates[pageIndex].klass.value" class="page-viewer">
 				<component :is="page.default" class="viewed-page"></component>
 			</PageViewer>
-			<!-- <div v-if="!pageStates[pageIndex].vIf.value">hidden</div> -->
 		</template>
 	</div>
 </template>
@@ -19,8 +17,6 @@
 	top: 0px;
 	width: 100%;
 	height: 100%;
-	/* height: calc(100vh - 10px);
-	width: calc((100vh - 10px) * 1 / 2); */
 	container-type: size;
 	container-name: minigame;
 	font-size: 2cqh;

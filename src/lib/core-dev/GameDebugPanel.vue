@@ -2,7 +2,7 @@
 	<div class="debug-expander" @click="toggle" title="toggle debug panel">
 		{{ expanded ? '▲' : '▼' }}
 	</div>
-	<div class="game-debug-panel" v-if="expanded">
+	<div class="dev game-debug-panel" v-if="expanded">
 		<div class="button-container">
 			<button title="Start" @click="gameState.jumpStart">⏮</button>
 			<button title="Prev" @click="gameState.jumpPrev">⏴</button>
@@ -47,8 +47,9 @@
 		</div> -->
 		<div>
 			<!-- <h3>Game switcher</h3> -->
-			<button @click="appTools.switchGame(gameName)" v-for="gameName of appTools.gameNames.value">{{ gameName
-			}}</button>
+			<button :class="{ selected: appTools.gameName.value == gameName }" @click="appTools.switchGame(gameName)"
+				v-for="gameName of appTools.gameNames.value">{{ gameName
+				}}</button>
 		</div>
 	</div>
 </template>

@@ -5,6 +5,7 @@ import './volk.css'
 import './style.css'
 import './fonts.css'
 import './anim.css'
+import './dev.css'
 import './transition.css'
 import App from './App.vue'
 
