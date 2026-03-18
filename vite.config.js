@@ -22,7 +22,7 @@ export default defineConfig(({ mode }) => {
   for (let i = 0; i < 32; i++) {
     const eg = extraGames[i]
     const s = `@game-${i}`
-    const d = eg ? path.resolve(__dirname, `./src/games/${gameName}/${gameName}.vue`) : path.resolve(__dirname, './src/Dummy.vue')
+    const d = eg ? path.resolve(__dirname, `./src/games/${eg}/${eg}.vue`) : path.resolve(__dirname, './src/Dummy.vue')
     extraGamesAlias[s] = d
   }
   console.log(JSON.stringify(extraGamesAlias, null, 2))
