@@ -9,7 +9,7 @@ import { resolve } from 'path';
 import { execute, formatDuration, formatFileSize, getGitCommitInfo, isGitClean } from './buildTools'
 
 
-async function runBuild(gameName: string) {
+async function runBuild(gameName: string, options = { quiet: false }) {
 	// 1. Set your Environment Variable natively
 	// This is the equivalent of 'export MY_VAR=value'
 	// const gameName = 'Game2'
@@ -63,7 +63,11 @@ async function runBuild(gameName: string) {
 		const msg = `:large_green_circle: xge qa build • \`${gameName}\` • :gear: ${formatDuration(dt, true, true)} • :cloud: ${formatDuration(dt2, true, true)}
 ${qaUrl}
 ${zipUrl} - ${zipSizeStr}`
-		slack.sendMessage(msg)
+		if (!options.quiet) {
+			slack.sendMessage(msg)
+		} else {
+			console.log(msg)
+		}
 	} catch (error) {
 		console.error('Build failed:', error);
 		process.exit(1);
@@ -79,15 +83,20 @@ async function main() {
 	const gameNames = await fs.promises.readdir('./src/games')
 	console.log(gameNames)
 	let args = process.argv.slice(2)
+
 	const gameArg = args[0]
+
+	const quiet = args.includes('-q')
+	const options = { quiet }
+
 	if (gameNames.includes(gameArg)) {
-		await runBuild(gameArg)
+		await runBuild(gameArg, options)
 	} else {
 		for (let gn of gameNames) {
 			const rx = new RegExp(gameArg)
 			if (gn.search(rx) > -1) {
 				console.log(`${gameArg} matched ${gn}`)
-				await runBuild(gn)
+				await runBuild(gn, options)
 			} else {
 				console.log(`${gameArg} did not match ${gn}`)
 			}
