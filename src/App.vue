@@ -7,6 +7,11 @@ const isDev = import.meta.env.DEV
 const envGameName = import.meta.env.VITE_GAME_NAME
 const envExtraGameNames = import.meta.env.VITE_EXTRA_GAMES
 
+if (!isDev) {
+  console.log('prod mode')
+  console.log('envGameName', envGameName)
+  console.log('envExtraGameNames', envExtraGameNames)
+}
 // in production we statically import the game using an alias, see vite.config.js
 const ProdGame = defineAsyncComponent(() => import('@active-game'))
 // this is actually necessary.
@@ -45,13 +50,9 @@ const ExtraGames = [
   defineAsyncComponent(() => import('@game-31')),
 ]
 
-
-
 // build tool sets the game name
 const gameName = ref(envGameName || 'Game1')
 let gameNames = ref([gameName.value])
-
-
 
 let games: Record<string, unknown>
 if (isDev) {
@@ -66,7 +67,7 @@ const prodGame = computed(() => {
   if (envGameName == gameName) {
     return ProdGame
   }
-  const gameIndex = envExtraGameNames.indexOf(gameName)
+  const gameIndex = envExtraGameNames.split(',').indexOf(gameName)
   if (gameIndex == -1) {
     return null
   }
