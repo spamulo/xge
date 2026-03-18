@@ -61,6 +61,13 @@ if (isDev) {
   gameNames.value = Object.keys(games).filter(gn => {
     return gn.split('/').length == 4
   }).map(gn => gn.split('/')[2])
+} else {
+  games = { [`./games/${envGameName}/${envGameName}.vue`]: ProdGame }
+  envExtraGameNames.split(',').forEach((gn: string, i: number) => {
+    gameNames.value.push(gn)
+    const path = `./games/${gn}/${gn}.vue`
+    games[path] = ExtraGames[i]
+  })
 }
 
 const prodGame = computed(() => {
@@ -79,7 +86,7 @@ const CurrentGame = computed(() => {
     // dev mode - the current game is taken from the dynamically imported 'games'
     const path = `./games/${gameName.value}/${gameName.value}.vue`
     const devGame = games[path]
-    return ((devGame || {}) as any).default || null
+    return ((devGame || {}) as any).default || ((devGame || {}) as any) || null
   } else {
     // prod mode - we look up the game in the static list
     return prodGame.value
