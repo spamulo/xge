@@ -14,7 +14,23 @@ async function runBuild(gameName: string) {
 	// This is the equivalent of 'export MY_VAR=value'
 	// const gameName = 'Game2'
 	const t = Date.now()
-	process.env.VITE_GAME_NAME = gameName;
+	// look in packages for env packages to build
+	const envFilePath = path.join('packages', `${gameName}.package`);
+	let packageVars: Record<string, string> = {};
+	if (fs.existsSync(envFilePath)) {
+		const packageContent = fs.readFileSync(envFilePath, 'utf-8');
+		packageContent.split('\n').forEach(line => {
+			const [key, value] = line.split('=');
+			if (key && value) {
+				packageVars[key.trim()] = value.trim();
+			}
+		});
+	}
+	process.env.VITE_GAME_NAME = gameName || packageVars['VITE_GAME_NAME']
+	if (packageVars['VITE_EXTRA_GAMES']) {
+		process.env.VITE_EXTRA_GAMES = packageVars['VITE_EXTRA_GAMES']
+	}
+
 	const { hash } = await getGitCommitInfo()
 	const outDir = `dist-auto/${gameName}_${hash}`
 
@@ -33,7 +49,6 @@ async function runBuild(gameName: string) {
 
 		console.log('Build completed successfully!');
 		const dt = Date.now() - t
-
 		const t2 = Date.now()
 
 		// zip and rsync to qa server
